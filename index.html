@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word-Guess-Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-size: 1rem;
+            font-family: serif;
+            color: #113235;
+            background-color: #fff;
+            
+        }
+
+        .width-200 {
+            width: 200px;
+            line-height: 3;
+        }
+
+        .letter-spacing {
+            letter-spacing: .2rem;
+        }
+
+        .correct-animation {
+            animation-name: correct;
+            animation-duration: 1s;
+        }
+
+        @keyframes correct {
+            50% {
+                font-size: 2rem;
+            }
+        }
+
+        .btn {
+            font-size: .9rem;
+            color: #113235;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <span class="width-200">Current Word: </span>
+        <span id="current-word" class="letter-spacing"></span>
+    </p>
+    <p>
+        <span class="width-200">Letters already guessed: </span>
+        <span id="letters-guessed"></span>
+    </p>
+    <p>
+        <span class="width-200">Chances left: </span>
+        <span id="chance-left"></span>
+    </p>
+    <p>
+        <span class="width-200">Result: </span>
+        <span id="result"></span>
+    </p>
+
+    <button id="button" class="btn">Do you wanna try another word?</button>
+
+    <script>
+        let currentWordSpan = document.getElementById('current-word');
+        let letterGuessedSpan = document.getElementById('letters-guessed');
+        let chanceLeftSpan = document.getElementById('chance-left');
+        let resultSpan = document.getElementById('result');
+        let randomWords = ['instructor', 'assignment', 'development', 'programmer', 'progress'];
+        let letterGuessed = [];
+        let chanceLeft = 15;
+
+        
+
+        let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)].split('');
+        let displayWord = randomWord.map(x => '_');
+        currentWordSpan.textContent = `'${displayWord.join('')}'`;
+        chanceLeftSpan.textContent = chanceLeft;
+
+        function animation() {
+            currentWordSpan.classList = "letter-spacing correct-animation";
+            setTimeout(() => {
+                currentWordSpan.classList = "letter-spacing";
+            }, 1000);
+        }
+        document.onkeyup = function (e) {
+            let check = 1;
+            if (e.key !== "Meta") {
+                check = 0;
+            }
+            if(check === 0) {
+                if(randomWord.indexOf(e.key) !== -1) {
+                    let index = randomWord.indexOf(e.key);
+                    displayWord[index] = e.key;
+                    currentWordSpan.textContent = `'${displayWord.join('')}'`;
+                    animation();
+                    randomWord[index] = '_';
+                    
+                } else {
+                    chanceLeft--;
+                    letterGuessed.push(e.key.toUpperCase());
+                    letterGuessedSpan.textContent = `'${letterGuessed}'`;
+                    chanceLeftSpan.textContent = chanceLeft;
+                }
+            } 
+            function result() {
+
+                if(chanceLeft === 0) {
+                    resultSpan.textContent = 'You lost!';
+                    setTimeout(() => {
+                        let confirm = window.confirm('Do you want to guess new words?');
+                        if(confirm) {   
+                            chanceLeft = 15;
+                            letterGuessed = [];
+                            resultSpan.textContent = '';
+                            chanceLeftSpan.textContent = chanceLeft;
+                            letterGuessedSpan.textContent = '';
+                        }
+                    },1);   
+                } else if(displayWord.indexOf('_') === -1) {
+                    resultSpan.textContent = 'You Win!'
+                }
+            }
+            
+                
+            result();
+        }
+
+        
+        
+    </script>
+</body>
+</html>
