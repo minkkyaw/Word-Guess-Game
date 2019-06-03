@@ -149,8 +149,7 @@
 }
 
 .hor-line-animation {
-    width: 100%;
-    margin-left: 1.25vw;
+    width: 710px;
     animation-name: hor-line;
     animation-duration: 20s;
     animation-timing-function: linear;
@@ -160,7 +159,7 @@
 }
 @keyframes hor-line {
     0% {
-        left: 0vw;
+        left: -710px;
     }
 
     50% {
