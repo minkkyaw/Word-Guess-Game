@@ -182,3 +182,25 @@
     }
 
 }
+
+.you-win-animation {
+    animation-name: you-win;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+}
+@keyframes you-win {
+
+    25% {
+        font-size: 4rem;
+        color: red;
+    }
+    50% {
+        font-size: 3rem;
+        color: blue;
+    }
+    75% {
+        font-size: 4rem;
+        color: red;
+    }
+
+}

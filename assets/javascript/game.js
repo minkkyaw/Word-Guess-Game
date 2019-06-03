@@ -5,6 +5,7 @@ let chanceLeftP = document.getElementById('chance-left');
 let resultP = document.getElementById('result');
 let startCheck = 0;
 let check = 0;
+let keyboardDisabled = 0;
 let aToZ = [];
 let letterGuessed = [];
 let chanceLeft = 10;
@@ -13,6 +14,7 @@ let randomWords = ['backenddeveloper', 'frontenddeveloper', 'webdeveloper', 'pro
 let random = Math.floor(Math.random() *randomWords.length);
 let randomWord = randomWords[random].split('');
 let displayWord = randomWord.map(x => '_');
+
 for(let i = 97; i < 123; i++) {
     aToZ.push(i);
 }
@@ -25,7 +27,15 @@ function animation() {
     }, 500);
 }
 
+function animation() {
+    currentWordP.classList = "letter-spacing correct-animation";
+    setTimeout(() => {
+        currentWordP.classList = "letter-spacing";
+    }, 500);
+}
+
 document.onkeyup = function(e) {
+    
     if (e.key !== 'Meta') {
         check = 1;
     }
@@ -33,7 +43,7 @@ document.onkeyup = function(e) {
     if(alphabets.indexOf(e.key) !== -1) {
         alphaCheck = 1;
     }
-    if(check === 1 && startCheck === 1 && alphaCheck === 1) {
+    if(check === 1 && startCheck === 1 && alphaCheck === 1 && keyboardDisabled === 0) {
         if(randomWord.indexOf(e.key) !== -1) {
             let index = randomWord.indexOf(e.key);
             displayWord[index] = e.key;
@@ -66,24 +76,38 @@ document.onkeyup = function(e) {
                     }
                 },20);   
             } else if(displayWord.indexOf('_') === -1) {
+                let aniTime = 1;
+                keyboardDisabled = 1;
                 resultP.textContent = 'You Win!';
+                resultP.className = 'you-win-animation';
                 setTimeout(() => {
-                    let confirm = window.confirm('You Win!!! Do you want to guess new words?');
-                    if(confirm) {
-                        random = Math.floor(Math.random() *randomWords.length);
-                        randomWord = randomWords[random].split('');
-                        displayWord = randomWord.map(x => '_');
-                        chanceLeft = 10;
-                        letterGuessed = [];
-                        currentWordP.textContent = `'${displayWord.join('')}'`;
-                        letterGuessedP.textContent = '';
-                        resultP.textContent = '';
-                        chanceLeftP.textContent = chanceLeft;
-                        letterGuessedP.textContent = '';
-                    }
-                },20);      
+                    aniTime = 0;
+                    resultP.classList.remove('you-win-animation');
+                    return aniTime;
+                    
+                }, 2000);
+                if (aniTime === 1) {
+                    setTimeout(() => {
+                        let confirm = window.confirm('You Win!!! Do you want to guess new words?');
+                        if(confirm) {
+                            random = Math.floor(Math.random() *randomWords.length);
+                            randomWord = randomWords[random].split('');
+                            displayWord = randomWord.map(x => '_');
+                            chanceLeft = 10;
+                            letterGuessed = [];
+                            currentWordP.textContent = `'${displayWord.join('')}'`;
+                            letterGuessedP.textContent = '';
+                            resultP.textContent = '';
+                            chanceLeftP.textContent = chanceLeft;
+                            letterGuessedP.textContent = '';
+                        }
+                        keyboardDisabled = 0;
+                    },2000);  
+                } 
+                  
             }
         }
+        
         result();
     }
     if(e.key !== "Meta") {
@@ -94,4 +118,8 @@ document.onkeyup = function(e) {
         chanceLeftP.textContent = chanceLeft;
     }
     
+    
 }
+
+console.log(keyboardDisabled);
+
