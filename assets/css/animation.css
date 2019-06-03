@@ -166,7 +166,7 @@
         left: 100vw;
     }
     100% {
-        left: 0vw;
+        left: -710px;
     }
 }
 
