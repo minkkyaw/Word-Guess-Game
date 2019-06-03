@@ -149,20 +149,25 @@
 }
 
 .hor-line-animation {
+    width: 50%;
+    margin-left: 1.25vw;
     animation-name: hor-line;
-    animation-duration: 5s;
-    animation-timing-function: ease-in;
+    animation-duration: 20s;
+    animation-timing-function: linear;
     animation-iteration-count: infinite;
+    position: absolute;
+    overflow: hidden;
 }
 @keyframes hor-line {
-    25% {
-        background: linear-gradient(75deg, #6de280, #d4e26d, #6d6de2, #e26d7b);
+    0% {
+        left: 0vw;
     }
+
     50% {
-        background: linear-gradient(120deg, #6de280, #d4e26d, #6d6de2, #e26d7b);
+        left: 100vw;
     }
-    75% {
-        background: linear-gradient(165deg, #6de280, #d4e26d, #6d6de2, #e26d7b);
+    100% {
+        left: 0vw;
     }
 }
 
