@@ -25,12 +25,13 @@ body {
     box-shadow: 0px 0px 10px 2px rgba(71, 70, 70, 0.2);
 }
 .hor-line {
-    height: 55px;
+    min-height: 55px;
     width: 100%;
     padding: 10px;
     border-top: 3px solid #005855;
     border-bottom: 3px solid #005855;
     position: relative;
+    overflow: hidden;
 }
 
 .container {
@@ -54,6 +55,10 @@ body {
     margin-bottom: 20px;
 }
 
+.height-78 {
+    height: 78px;
+}
+
 .score-board {
     text-align: center;
     margin: 0 35vw;
@@ -61,7 +66,7 @@ body {
 }
 
 .score {
-    color: #0f8652;
+    color: #262974;
     height: 130px;
     background-color: rgba(161, 159, 159, 0.2);
     box-shadow: 0px 0px 5px 3px rgba(71, 70, 70, 0.2);
@@ -95,7 +100,11 @@ hr {
 }
 
 .footer {
-    height: 70px;
+    color: #b1a9a9;
     text-align: center;
-    background-color: #005855;
+    background-color: #11445c;
+}
+
+.footer div {
+    padding: 20px 0;
 }

@@ -149,7 +149,7 @@
 }
 
 .hor-line-animation {
-    width: 50%;
+    width: 100%;
     margin-left: 1.25vw;
     animation-name: hor-line;
     animation-duration: 20s;

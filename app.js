@@ -64,11 +64,11 @@ document.onkeyup = function(e) {
                         chanceLeftP.textContent = chanceLeft;
                         resultP.textContent = '';
                     }
-                },1);   
+                },20);   
             } else if(displayWord.indexOf('_') === -1) {
                 resultP.textContent = 'You Win!';
                 setTimeout(() => {
-                    let confirm = window.confirm('Do you want to guess new words?');
+                    let confirm = window.confirm('You Win!!! Do you want to guess new words?');
                     if(confirm) {
                         random = Math.floor(Math.random() *randomWords.length);
                         randomWord = randomWords[random].split('');
@@ -81,7 +81,7 @@ document.onkeyup = function(e) {
                         chanceLeftP.textContent = chanceLeft;
                         letterGuessedP.textContent = '';
                     }
-                },10);      
+                },20);      
             }
         }
         result();
@@ -89,7 +89,7 @@ document.onkeyup = function(e) {
     if(e.key !== "Meta") {
         startCheck = 1;
         pressToStartP.textContent = '';
-        pressToStartP.classList = '';
+        pressToStartP.classList = 'height-78';
         currentWordP.textContent = `'${displayWord.join('')}'`;
         chanceLeftP.textContent = chanceLeft;
     }
