@@ -172,7 +172,7 @@
 
 .correct-animation {
     animation-name: correct;
-    animation-duration: .5s;
+    animation-duration: .3s;
     animation-timing-function: ease-in;
 }
 

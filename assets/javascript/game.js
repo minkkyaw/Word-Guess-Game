@@ -4,12 +4,12 @@ let pressToStartP = document.getElementById('press-to-start');
 let gameRuleDiv = document.getElementById('game-rule');
 let explainDiv = document.getElementById('explain');
 let currentWordP = document.getElementById('current-word');
+let letterSpan = document.getElementsByClassName('letter-span');
 let letterGuessedP = document.getElementById('letters-guessed');
 let chanceLeftP = document.getElementById('chance-left');
 let resultP = document.getElementById('result');
 let removeClass = document.getElementsByClassName('display');
 let buttonA = document.getElementById('button');
-let ringAudio = document.getElementById('ring');
 let startCheck = 0;
 let check = 0;
 let keyboardDisabled = 0;
@@ -72,6 +72,7 @@ function defaultSetting() {
         removeClass[i].classList = 'score display';
     }
     buttonA.classList = 'display-none';
+    keyboardDisabled = 0;
 }
 
 function animation() {
@@ -93,12 +94,12 @@ buttonA.addEventListener("click", function(e) {
     console.log("a");
     defaultSetting();
     buttonA.classList.remove('btn');
+    keyboardDisabled = 0;
 });
 
 
 
 document.onkeyup = function(e) {
-    
     if (e.key !== 'Meta') {
         check = 1;
     }
@@ -112,18 +113,23 @@ document.onkeyup = function(e) {
             displayWord[index] = e.key;
             currentWordP.textContent = `'${displayWord.join('')}'`;
             animation();
-            ringAudio.play();
-            randomWord[index] = '_';
-            
+            var ring = new Audio("./assets/music/ring.m4a");
+            ring.play();
+            randomWord[index] = '_'; 
         } else {
             chanceLeft--;
-            letterGuessed.push(e.key.toUpperCase());
-            letterGuessedP.textContent = `'${letterGuessed}'`;
+            if(letterGuessed.length < 1) {
+                letterGuessed.push(`${e.key.toUpperCase()}`);
+            } else {
+                letterGuessed.push(`, ${e.key.toUpperCase()}`);
+            }
+            letterGuessedP.textContent = `' ${letterGuessed.join('')} '`;
             chanceLeftP.textContent = chanceLeft;
         }
         function result() {
             if(chanceLeft === 0) {
                 resultP.textContent = 'You lost!';
+                keyboardDisabled = 1;
                 setTimeout(() => {
                     let confirm = window.confirm('You lost!!! Do you try to guess new words?');
                     if(confirm) {   
@@ -132,7 +138,7 @@ document.onkeyup = function(e) {
                     } else {
                         buttonA.classList = 'btn';
                     }
-                    keyboardDisabled = 0;
+                    
                 },50);   
             } else if(displayWord.indexOf('_') === -1) {
                 let aniTime = 1;
@@ -160,7 +166,6 @@ document.onkeyup = function(e) {
                         } else {
                             buttonA.classList = 'btn';
                         }
-                        keyboardDisabled = 0;
                     },2000);  
                 } 
                   

@@ -81,6 +81,9 @@ body {
     border-radius: 20px;
     margin-bottom: 20px;
     height: 280px;
+    animation-name: display;
+    animation-duration: .5s;
+    animation-timing-function: ease-in;
 }
 
 .score {
