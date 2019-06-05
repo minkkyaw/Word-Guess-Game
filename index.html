@@ -33,34 +33,45 @@
             <div>
                 <p id="press-to-start" class="press-to-start">Press any key to start...</p>
             </div>
+
+            <div >
+                <p id="game-rule" class="rule">
+                    When you press any key, a random word is generated for you. You have 10 chances to guesss letters that isn't include in the random word. The chances is deducted if you guess a single letter more times than that is included in the actual words.(eg- in 'apple', only two 'p' is included. If you press three times, you will loose one chance.) If you can guess the random letter without using all chances, YOU WIN!!!. Else, YOU LOOSE!!! 
+                </p>
+            </div>
         
-            <div class="score">
+            <div class="display-none display">
                 <p>Current Word</p>
                 <hr>
                 <p id="current-word" class="letter-spacing"></p>
             </div>
 
-            <div class="score">
+            <div id="explain">
+            </div>
+
+            <div class="display-none display">
                 <p>Letters already guessed</p>
                 <hr>
                 <p id="letters-guessed"></p>
             </div>
 
-            <div class="score">
+            <div class="display-none display">
                 <p>Chances left</p>
                 <hr>
                 <p id="chance-left"></p>
             </div>
 
-            <div class="score">
+            <div class="display-none display">
                 <p>Result</p>
                 <hr>
                 <p id="result"></p>
             </div>
+            <br>
+            <a href="#" id="button" class="display-none">Get a random word</a>
         </div>
-        
+        <audio id="ring" src="./assets/music/ring.m4a" class="display-none"></audio>
     
-        <!-- <button id="button" class="btn">Do you wanna try another word?</button> -->
+        
     </div>
     <div class="hor-line">
     </div>

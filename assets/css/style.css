@@ -15,6 +15,7 @@ body {
     background-color: #f4f4f4;
     padding: 20px; 
 }
+
 .header-h1 {
     text-align: center;
     font-size: 3rem;
@@ -24,6 +25,7 @@ body {
     border-radius: 20px;
     box-shadow: 0px 0px 10px 2px rgba(71, 70, 70, 0.2);
 }
+
 .hor-line {
     min-height: 55px;
     width: 100%;
@@ -36,13 +38,12 @@ body {
 
 .container {
     font-size: 1.5rem;
-    height: 100vh;
-    width: 100vw;
+    min-height: 1000px;
     background-image: url(../images/background-gaming-27.jpg);
     background-repeat: no-repeat;
     background-blend-mode: multiply;
     background-size: cover;
-    padding-top: 5vh;
+    padding: 5vh;
 }
 
 .press-to-start {
@@ -55,14 +56,31 @@ body {
     margin-bottom: 20px;
 }
 
-.height-78 {
-    height: 78px;
-}
-
 .score-board {
     text-align: center;
     margin: 0 35vw;
     border-radius: 20px;
+}
+
+.rule {
+    color: #262974;
+    text-align: justify;
+    background-color: rgba(161, 159, 159, 0.2);
+    box-shadow: 0px 0px 5px 3px rgba(71, 70, 70, 0.2);
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.explain-word {
+    color: #262974;
+    text-align: justify;
+    background-color: rgba(161, 159, 159, 0.2);
+    box-shadow: 0px 0px 5px 3px rgba(71, 70, 70, 0.2);
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: 280px;
 }
 
 .score {
@@ -73,6 +91,26 @@ body {
     padding: 15px;
     border-radius: 20px;
     margin-bottom: 20px;
+    animation-name: display;
+    animation-duration: .5s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes display {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.display-none {
+    display: none;
 }
 
 hr {
@@ -89,15 +127,28 @@ hr {
 
 
 .btn {
-    font-size: .9rem;
+    text-decoration: none;
     color: #113235;
+    background-color: #f4f4f4;
     padding: 10px;
+    box-shadow: 0 0 10px 3px #666;
     border-radius: 10px;
+    border: none;
 }
 
 .btn:focus {
     outline: none;
+    border: none;
+    animation-name: btn-focus;
+    animation-duration: .3s;
 }
+@keyframes btn-focus {
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px 3px #559b98;
+    }
+}
+
 
 .footer {
     color: #b1a9a9;
